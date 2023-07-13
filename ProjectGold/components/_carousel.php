@@ -1,4 +1,9 @@
+
 <?php
+if(!defined("APP")){
+  header("Location: ../index.php");
+  exit();
+} else {
 echo '<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
 <div class="carousel-inner">
   <div class="carousel-item active" data-bs-interval="3000">
@@ -20,4 +25,5 @@ echo '<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
   <span class="visually-hidden">Next</span>
 </button>
 </div>';
+}
 ?>

@@ -1,11 +1,13 @@
+<?php include './components/_dbconnect.php'?>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-	<link rel="stylesheet" href="./chat.css" class="stylesheet">
+	<link rel="stylesheet" href="./chat2.css" class="stylesheet">
 	<link rel="stylesheet" href="./msg.css" class="stylesheet">
+	<link rel="stylesheet" href="./topbooks.css" class="stylesheet">
     <title>CSE Dept. Library</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<style>
@@ -15,102 +17,40 @@
 	</style>
 </head>
   <body>
-	<?php include './components/_header.php'?>
+	<!-- Header file for navigation, logo and title -->
+	<?php define("APP",true);?>
+	<?php include './components/_header1.php'?>
+	<?php include './components/_login.php'?>
+	<?php include './components/_signup.php'?>
+	<?php 
+		if(isset($_GET['alert']) && $_GET['alert']!=="false"){
+			echo '<div class="alert alert-success alert-dismissible fade show" role="alert" id="signupError">
+                    <strong>Success! </strong>'.$_GET['alert'].'
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+		}
+		if(isset($_GET['error']) && $_GET['error']!=="false"){
+			echo '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="signupError">
+			<strong>Sorry! </strong>'.$_GET['error'].'
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>';
+		}
+	?>
+	<!-- carousel to slideshow the images -->
 	<?php include './components/_carousel.php'?>
 	<!-- Top books will be shown here -->
-	<div class="container">
-		<div>
-			<h2 class="display-5 fw-bold text-body-emphasis text-center my-5">
-				<span class="badge text-bg-dark rounded-pill position-relative">
-					Top Books
-					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-    					New
-  					</span>
-				</span>
-			</h2>
-		</div>
-		
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-
-			<div class="col">
-				<div class="card h-100 shadow-sm bg-body-tertiary rounded">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card h-100">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a short card.</p>
-				</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-				</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card h-100">
-				<img src="./assets/dbbook1.jpg" class="card-img-top" alt="..." height="200px">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<?php include './components/_topbooks.php'?>
 	<!-- explore and some info about references -->
-	<div class="container">
-		<div class="px-4 py-5 my-2 text-center">
-		<svg xmlns="http://www.w3.org/2000/svg" width="57" height="72" fill="#0d6efd" class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
-  <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z"/>
-</svg>
-			<h1 class="display-5 fw-bold text-body-emphasis"></h1>
-				<div class="col-lg-6 mx-auto">
-				<p class="lead mb-4">
-				Classic Computer Science Textbooks, Programming Language References, Data Science and Machine Learning, Computer Science Theory, Web Development Books, Software Engineering and Development Practices, Computer Science History and Biographies and Digital Journals, Magazines, and Online Publications
-				</p>
-				<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					<button type="button" class="btn btn-primary btn-lg px-4 gap-3">Explore Books</button>
-				</div>
-			</div>
-  		</div>
-	</div>
+	<?php include './components/_explorehero.php'?>
 	<!-- footer -->
 	<?php include './components/_footer.php'?>
 	<!-- chat bot -->
-	<button class="open-button" onclick="openForm()">Chat</button>
+	<div class="open-button" onclick="openForm()">
+	<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#04AA6D" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+		<path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+	</svg>
+	</div>
+	<!-- <button class="open-button" onclick="openForm()" style="border-radius:50%;">Chat</button> -->
 	<?php include './components/_chatbot.php'?>
 	<!-- bootstrap js cdn -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
@@ -123,8 +63,9 @@
   			document.getElementById("myForm").style.display = "none";
 		}
 	</script>
-	<script src="header.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script src="chatserver.js" type="module"></script>
+	<script src="head.js"></script>
+	<script src="alertclose.js"></script>
+	<script src="chatserver1.js" type="module"></script>
   </body>
 </html>

@@ -1,4 +1,9 @@
+
 <?php
+if(!defined("APP")){
+    header("Location: ../index.php");
+    exit();
+  } else {
 echo '<div class="chat-popup" id="myForm">
 <form class="form-container" id="chatform">
     <h4>Hey, ask me about books</h4>
@@ -9,16 +14,16 @@ echo '<div class="chat-popup" id="myForm">
                 <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2V1.866ZM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5Z"/>
               </svg>
             <p>Hello. How are you today?</p>
-        <span class="time-right">11:00</span>
+        <span class="time-right" id="initmsg"></span>
         </div>
     </div>
 
-    <label for="msg" id="promptlabel"><b>Prompt</b></label>
+    <label for="promptarea" id="promptlabel"><b>Prompt</b></label>
     <textarea placeholder="Type Your Question here..." class="prompt mb-0" id="promptarea"></textarea>
     <div class="d-grid gap-1 col-12 mx-auto">
         <button class="btn btn-success" type="button" id="promptbtn">Send</button>
         <button class="btn btn-danger" type="button" onclick="closeForm()" >Close</button>
     </div>
 </form>
-</div>';
+</div>';}
 ?>
