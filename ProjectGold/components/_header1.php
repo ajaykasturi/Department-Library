@@ -3,27 +3,27 @@ if(!defined("APP")){
     header("Location: ../index.php");
     exit();
 } else {
-  if($_GET['search']==="true"){
+  if(isset($_GET['search']) && $_GET['search']==="true"){
     $searchclass = "link-secondary";
     $homeclass = $borrowclass = $reserveclass = $rulesclass = $aboutclass = $contactclass = "link-body-emphasis";
   }
-  elseif($_GET['borrow']==="true"){
-    $borrowclass = "link-secondary";
-    $homeclass = $searchclass = $reserveclass = $rulesclass = $aboutclass = $contactclass = "link-body-emphasis";
-  }
-  elseif($_GET['reserve']==="true"){
-    $reserveclass = "link-secondary";
-    $homeclass = $borrowclass = $searchclass = $rulesclass = $aboutclass = $contactclass = "link-body-emphasis";
-  }
-  elseif($_GET['rules']==="true"){
+  // elseif(isset($_GET['borrow']) && $_GET['borrow']==="true"){
+  //   $borrowclass = "link-secondary";
+  //   $homeclass = $searchclass = $reserveclass = $rulesclass = $aboutclass = $contactclass = "link-body-emphasis";
+  // }
+  // elseif(isset($_GET['reserve']) && $_GET['reserve']==="true"){
+  //   $reserveclass = "link-secondary";
+  //   $homeclass = $borrowclass = $searchclass = $rulesclass = $aboutclass = $contactclass = "link-body-emphasis";
+  // }
+  elseif(isset($_GET['rules']) && $_GET['rules']==="true"){
     $rulesclass = "link-secondary";
     $homeclass = $borrowclass = $reserveclass = $searchclass = $aboutclass = $contactclass = "link-body-emphasis";
   }
-  elseif($_GET['about']==="true"){
+  elseif(isset($_GET['about']) && $_GET['about']==="true"){
     $aboutclass = "link-secondary";
     $homeclass = $borrowclass = $reserveclass = $rulesclass = $searchclass = $contactclass = "link-body-emphasis";
   }
-  elseif($_GET['contact']==="true"){
+  elseif(isset($_GET['contact']) && $_GET['contact']==="true"){
     $contactclass = "link-secondary";
     $homeclass = $borrowclass = $reserveclass = $rulesclass = $aboutclass = $searchclass = "link-body-emphasis";
   } else {
@@ -41,8 +41,10 @@ echo '<header class="p-3 mb-2 border-bottom">
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <li><a href="./index.php" class="nav-link px-2 '.$homeclass.' hover rounded-pill">Home</a></li>
+      <!--
       <li><a href="./borrow.php?borrow=true" class="nav-link px-2 '.$borrowclass.' hover rounded-pill">Borrow/Return</a></li>
       <li><a href="./reserve.php?reserve=true" class="nav-link px-2 '.$reserveclass.' hover rounded-pill">Reserve</a></li>
+      -->
       <li><a href="./rules.php?rules=true" class="nav-link px-2 '.$rulesclass.' hover rounded-pill">Rules</a></li>
       <li><a href="./explore.php?search=true" class="nav-link px-2 '.$searchclass.' hover rounded-pill">Explore</a></li>
       <li><a href="./about.php?about=true" class="nav-link px-2 '.$aboutclass.' hover rounded-pill">About</a></li>
@@ -62,7 +64,7 @@ echo '<header class="p-3 mb-2 border-bottom">
                 </svg>
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -70,9 +72,10 @@ echo '<header class="p-3 mb-2 border-bottom">
                 </ul>
             </div>';} else {
                 echo '<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign-up</button>';
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Sign-up</button> ';
             }
-echo '</div>
+echo '
+</div>
 </div>
 </header>';}
 ?>

@@ -1,6 +1,9 @@
-<?php include './components/_dbconnect.php'?>
+<?php 
+include './components/_dbconnect.php';
+session_start();
+?>
 <!doctype html>
-<html lang="en">
+<html lang="en" id="main" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +22,9 @@
   <body>
 	<!-- Header file for navigation, logo and title -->
 	<?php define("APP",true);?>
-	<?php include './components/_header1.php'?>
-	<?php include './components/_login.php'?>
-	<?php include './components/_signup.php'?>
+	<?php include './components/_header1.php';?>
+	<?php include './components/_login.php';?>
+	<?php include './components/_signup.php';?>
 	<?php 
 		if(isset($_GET['alert']) && $_GET['alert']!=="false"){
 			echo '<div class="alert alert-success alert-dismissible fade show" role="alert" id="signupError">
@@ -64,8 +67,9 @@
 		}
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	<script src="head.js"></script>
+	<!-- <script src="head.js"></script> -->
 	<script src="alertclose.js"></script>
 	<script src="chatserver1.js" type="module"></script>
+	<!-- <script src="darkmode.js"></script> -->
   </body>
 </html>

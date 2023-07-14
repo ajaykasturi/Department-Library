@@ -1,5 +1,6 @@
+<?php session_start(); ?>
 <!doctype html>
-<html lang="en">
+<html lang="en" id="main">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +13,19 @@
   </head>
   <body>
     <?php define("APP",true);?>
-    <?php include './components/_header1.php'?>
-    <div class="containerfluid table-responsive">
+    <?php include './components/_header1.php';?>
+    <?php include './components/_login.php';?>
+	  <?php include './components/_signup.php';?>
+    <?php include './components/_confirm.php';?>
+    <?php 
+      if(isset($_GET['alert']) && $_GET['alert']!=="false"){
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert" id="signupError">
+                      <strong>Status: </strong>'.$_GET['alert'].'
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+      }
+	  ?>
+    <div class="container-fluid table-responsive">
         <table class="table table-striped table-borderless" id="querytable">
             <thead >
                 <tr>
@@ -22,7 +34,10 @@
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Count</th>
-                <th scope="col">Reserve</th>
+                <?php 
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']===true){
+                echo '<th scope="col">Actions/Status</th>';
+                }?>
                 </tr>
             </thead>
             <tbody>
@@ -40,9 +55,32 @@
                                         <td><img src="./assets/bookcover/'.$row["book_id"].'.jpg" alt="cover image of book height="55" width="55"></td>
                                         <td>'.$row["book_title"].'</td>
                                         <td>'.$row["book_author"].'</td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-primary btn-sm">Reserve</button></td>
-                                    </tr>';
+                                        <td>'.$row['book_count'].'</td>';
+                                        if($row['book_count']>0){
+                                          if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']===true){
+                                            $user = $_SESSION['username'];
+                                            $bid = $row['book_id'];
+                                            $query1 = "SELECT * FROM reserve where username='$user' AND reserve_book_id='$bid';";
+                                            $result1 = mysqli_query($conn, $query1);
+                                            $numRows1 = mysqli_num_rows($result1);
+                                            if($numRows1>=1){
+                                              $row1 = mysqli_fetch_assoc($result1);
+                                              if($row1['status']==='0'){
+                                                echo '<td><button type="button" class="reserve btn btn-primary btn-sm" id='.$row["book_id"].' >Pending</button></td>';
+                                              } elseif($row1['status']==='1'){
+                                                echo '<td><button type="button" class="reserve btn btn-primary btn-sm" id='.$row["book_id"].' >Approved</button></td>';
+                                              } 
+                                            }
+                                             else {
+                                              echo '<td><button type="button" class="reserve btn btn-primary btn-sm" id='.$row["book_id"].' data-bs-toggle="modal" data-bs-target="#reserveConfirm">Reserve</button></td>'; 
+                                            }
+                                          }
+                                        } else{
+                                          if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']===true){
+                                            echo '<td><button type="button" class="btn btn-primary btn-sm" disabled>Reserve</button></td>'; 
+                                          }
+                                        }
+                                    echo '</tr>';
                         }
                     } else {
                         echo '<tr>
@@ -73,5 +111,7 @@
         });
       });
     </script>
+    <!-- <script src="darkmode.js"></script> -->
+    <script src="reserves.js"></script>
   </body>
 </html>
