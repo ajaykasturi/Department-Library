@@ -14,14 +14,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             session_start();
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['username'];
-            header("Location: /project/index.php");
+            header("Location: ../index.php");
             exit();
         }
     }
     $showError = "Unable to login";
-    header("Location: /project/index.php?error=$showError");
+    header("Location: ../index.php?error=$showError");
     exit();
 }
-header("Location: /project/index.php");
+header("Location: ../index.php");
 exit();
 ?>

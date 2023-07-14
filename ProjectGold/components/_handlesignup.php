@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 
     //code to check for passwords are matched or not
     $query1 = "SELECT * FROM `students` where username = '$username';";
-    $query2 = "SELECT * FROM `students` where email = '$eamil';";
+    $query2 = "SELECT * FROM `students` where email = '$email';";
     $result1=  mysqli_query($conn, $query1);
     $result2=  mysqli_query($conn, $query2);
     $numrows1 = mysqli_num_rows($result1);
@@ -30,15 +30,15 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             } else {
                 $showError = "Unable to signup: Something went wrong...";
             }
-            header("Location: /project/index.php?error=$showError&alert=$showAlert");
+            header("Location: ../index.php?error=$showError&alert=$showAlert");
             exit();
         } else {
             $showError = "Unable to signup: Please make sure that passwords must match";
         }
     }
-    header("Location: /project/index.php?error=$showError&alert=$showAlert");
+    header("Location: ../index.php?error=$showError&alert=$showAlert");
     exit();
 }
-header("Location: /project/index.php");
+header("Location: ../index.php");
 exit();
 ?>

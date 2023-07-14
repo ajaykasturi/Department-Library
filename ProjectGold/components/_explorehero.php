@@ -14,7 +14,7 @@ echo '<div class="container">
         Classic Computer Science Textbooks, Programming Language References, Data Science and Machine Learning, Computer Science Theory, Web Development Books, Software Engineering and Development Practices, Computer Science History and Biographies and Digital Journals, Magazines, and Online Publications
         </p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Explore Books</button>
+            <a type="button" href="./explore.php?search=true" class="btn btn-primary btn-lg px-4 gap-3">Explore Books</a>
         </div>
     </div>
   </div>
